@@ -11,24 +11,28 @@ def linhas():
 
 def arquivoExiste(nome):
     try:
-        arquivo = open(nome, 'rt')
+        arquivo = open(nome, 'rt', encoding='utf-8')
     except:
         return False
     else:
         return True
+    finally:
+        arquivo.close()
     
 def criarArquivo(nome):
     try:
-        arquivo = open(nome, 'wt+')
+        arquivo = open(nome, 'wt+', encoding='utf-8')
     except:
         print('Houve um ERROR na criação do arquivo!')
     else:
         print('Arquivo criado com sucesso!')
+    finally:
+        arquivo.close()
 
 def procurar_carro(nome):
     resultado = []
     try:
-        arquivo = open(nome, 'rt')
+        arquivo = open(nome, 'rt', encoding='utf-8')
     except:
         print('Erro ao ler o arquivo.')
     else:
@@ -40,6 +44,8 @@ def procurar_carro(nome):
             print("Carro não encontrado!")
         else: 
             return resultado
+    finally:
+        arquivo.close()
 
 def buscarCarros(arquivo):
     resultado = []
@@ -51,6 +57,7 @@ def buscarCarros(arquivo):
         for carro in carros:
             if float(carro[1]) < float(pesquisa):
                 resultado.append(carro)
+        time.sleep(1)
         linhasF("resultado da pesquisa")
         time.sleep(1)
         if not resultado:
@@ -69,6 +76,7 @@ def buscarCarros(arquivo):
                 resultado.append(carro)
         time.sleep(1)
         linhasF("resultado da pesquisa")
+        time.sleep(1)
         if not resultado:
             print("Carro não encontrado!")
         else:
@@ -82,7 +90,7 @@ def buscarCarros(arquivo):
 
 def cadastrar_carro(nome_arquivo, nome_carro, preco, ano, estado):
     try:
-        arquivo = open(nome_arquivo, 'at')
+        arquivo = open(nome_arquivo, 'at', encoding='utf-8')
     except:
         print('Houve algum ERRO na abertura do arquivo!')
     else:
@@ -92,3 +100,5 @@ def cadastrar_carro(nome_arquivo, nome_carro, preco, ano, estado):
             print(f"Houve algum ERRO na hora de escrever os dados em '{arquivo}'")
         else:
             print('Novo registro adicionado!')
+    finally:
+        arquivo.close()
