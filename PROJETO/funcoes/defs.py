@@ -31,6 +31,12 @@ def criarArquivo(nome):
 
 def procurar_carro(nome):
     resultado = []
+    dicionario = {
+        'nome_carro': str,
+        'preco': float,
+        'ano': int,
+        'estado': str
+    }
     try:
         arquivo = open(nome, 'rt', encoding='utf-8')
     except:
@@ -38,8 +44,8 @@ def procurar_carro(nome):
     else:
         for dado in arquivo:
             dado = dado.replace('\n', '')
-            dado = dado.split(',')  
-            resultado.append([dado[0], dado[1], dado[2], dado[3]])        
+            dado = dado.split(',')
+            resultado.append({'nome_carro': dado[0], 'preco': dado[1], 'ano': dado[2], 'estado': dado[3]})        
         if not resultado:
             print("Carro não encontrado!")
         else: 
@@ -55,7 +61,7 @@ def buscarCarros(arquivo):
     time.sleep(1)
     if pesquisa.isnumeric() == True:
         for carro in carros:
-            if float(carro[1]) < float(pesquisa):
+            if float(carro['preco']) <= float(pesquisa):
                 resultado.append(carro)
         time.sleep(1)
         linhasF("resultado da pesquisa")
@@ -67,12 +73,12 @@ def buscarCarros(arquivo):
             print(f"{'NOME':<17}    {'PREÇO':<7}    {'ANO':<7}    {'ESTADO':<15}")
             print("-"*55)
             for dado in resultado:
-                print(f"{dado[0]:<20} {dado[1]:<10} {dado[2]:<10} {dado[3]:<15}")
+                print(f"{dado['nome_carro']:<20} {dado['preco']:<10} {dado['ano']:<10} {dado['estado']:<15}")
                 time.sleep(0.5)
             print("-"*55)
     else:
         for carro in carros:
-            if carro[3] == pesquisa.strip().lower():
+            if str(carro['estado']) == str(pesquisa.strip().lower()):
                 resultado.append(carro)
         time.sleep(1)
         linhasF("resultado da pesquisa")
@@ -84,7 +90,7 @@ def buscarCarros(arquivo):
             print(f"{'NOME':<17}    {'PREÇO':<7}    {'ANO':<7}    {'ESTADO':<15}")
             print("-"*55)
             for dado in resultado:
-                print(f"{dado[0]:<20} {dado[1]:<10} {dado[2]:<10} {dado[3]:<15}")
+                print(f"{dado['nome_carro']:<20} {dado['preco']:<10} {dado['ano']:<10} {dado['estado']:<15}")
                 time.sleep(0.5)
             print("-"*55)
 
