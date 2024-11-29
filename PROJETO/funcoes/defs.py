@@ -9,34 +9,8 @@ def linhasF(frase):
 def linhas():
     print('-' * (28))
 
-def arquivoExiste(nome):
-    try:
-        arquivo = open(nome, 'rt', encoding='utf-8')
-    except:
-        return False
-    else:
-        return True
-    finally:
-        arquivo.close()
-    
-def criarArquivo(nome):
-    try:
-        arquivo = open(nome, 'wt+', encoding='utf-8')
-    except:
-        print('Houve um ERROR na criação do arquivo!')
-    else:
-        print('Arquivo criado com sucesso!')
-    finally:
-        arquivo.close()
-
 def procurar_carro(nome):
     resultado = []
-    dicionario = {
-        'nome_carro': str,
-        'preco': float,
-        'ano': int,
-        'estado': str
-    }
     try:
         arquivo = open(nome, 'rt', encoding='utf-8')
     except:
